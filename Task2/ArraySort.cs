@@ -9,7 +9,7 @@ namespace Task2
     /// <summary>
     /// Contains methods for sorting rows of a jagged array
     /// </summary>
-    public class ArraySort
+    public static class ArraySort
     {
         #region Public Methods
         /// <summary>
