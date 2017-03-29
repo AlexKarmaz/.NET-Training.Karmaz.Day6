@@ -56,7 +56,7 @@ namespace Task2
         /// Compares two arrays
         /// </summary>
         /// <param name="firstArray">First array</param>
-        /// <param name="b">Second array</param>
+        /// <param name="secondArray">Second array</param>
         int Compare(int[] firstArray, int[] secondArray);
     }
 }
