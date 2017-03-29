@@ -14,7 +14,7 @@ namespace Task2.Tests
         {
             int[][] array = { new[] { 4, 2, -1, 9, -8, 10 }, new[] { 0 }, new[] { 4, 3, 8, 5, 7 } };
             int[][] testArray = { new[] { 0 }, new[] { 4, 2, -1, 9, -8, 10 }, new[] { 4, 3, 8, 5, 7 } };
-            SortRowSum(array);
+            BubbleSort(array, new ArraySortRowSum());
 
             IStructuralEquatable arrays = array;
 
@@ -24,7 +24,7 @@ namespace Task2.Tests
         [Test]
         public static void SortRowSum_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => SortRowSum(null));
+            Assert.Throws<ArgumentNullException>(() => BubbleSort(null, new ArraySortRowSum()));
         }
 
         [Test]
@@ -32,7 +32,7 @@ namespace Task2.Tests
         {
             int[][] array = { new[] { 4, 2, -1, 9, -8, 10 }, new[] { 0 }, new[] { 4, 3, 8, 5, 7 } };
             int[][] testArray = { new[] { 4, 3, 8, 5, 7 }, new[] { 4, 2, -1, 9, -8, 10 }, new[] { 0 } };
-            SortRowSumDesc(array);
+            BubbleSort(array, new ArraySortRowSumDesc());
 
             IStructuralEquatable arrays = array;
 
@@ -42,7 +42,7 @@ namespace Task2.Tests
         [Test]
         public static void SortRowSumDesc_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => SortRowSumDesc(null));
+            Assert.Throws<ArgumentNullException>(() => BubbleSort(null, new ArraySortRowSumDesc()));
         }
 
         [Test]
@@ -50,7 +50,7 @@ namespace Task2.Tests
         {
             int[][] array = { new[] { 4, 2, -1, 9, -8, 10 }, new[] { 0 }, new[] { 4, 3, 8, 5, 7 } };
             int[][] testArray = { new[] { 0 }, new[] { 4, 3, 8, 5, 7 }, new[] { 4, 2, -1, 9, -8, 10 } };
-            SortRowMaxElement(array);
+            BubbleSort(array, new ArraySortRowMaxElement());
 
             IStructuralEquatable arrays = array;
 
@@ -60,7 +60,7 @@ namespace Task2.Tests
         [Test]
         public void SortRowMaxElement_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => SortRowMaxElement(null));
+            Assert.Throws<ArgumentNullException>(() => BubbleSort(null, new ArraySortRowMaxElement()));
         }
 
         [Test]
@@ -68,7 +68,7 @@ namespace Task2.Tests
         {
             int[][] array = { new[] { 4, 2, -1, 9, -8, 10 }, new[] { 0 }, new[] { 4, 3, 8, 5, 7 } };
             int[][] testArray = { new[] { 4, 2, -1, 9, -8, 10 }, new[] { 4, 3, 8, 5, 7 }, new[] { 0 }, };
-            SortRowMaxElementDesc(array);
+            BubbleSort(array, new ArraySortRowMaxElementDesc());
 
             IStructuralEquatable arrays = array;
 
@@ -78,43 +78,68 @@ namespace Task2.Tests
         [Test]
         public void SortRowMaxElementDesc_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => SortRowMaxElementDesc(null));
+            Assert.Throws<ArgumentNullException>(() => BubbleSort(null, new ArraySortRowMaxElement()));
         }
+    }
 
-        [Test]
-        public void SortRowMinElement_PositiveTest()
+    public class ArraySortRowSum : Icomparer
+    {
+        public int Compare(int[] array1, int[] array2)
         {
-            int[][] array = { new[] { 4, 2, -1, 9, -8, 10 }, new[] { 0 }, new[] { 4, 3, 8, 5, 7 } };
-            int[][] testArray = { new[] { 4, 2, -1, 9, -8, 10 }, new[] { 0 }, new[] { 4, 3, 8, 5, 7 } };
-            SortRowMinElement(array);
+            if (array1 == null)
+                throw new ArgumentNullException(nameof(array1));
+            if (array2 == null)
+                throw new ArgumentNullException(nameof(array2));
 
-            IStructuralEquatable arrays = array;
+            if (array1.Sum() > array2.Sum()) return -1;
+            else if (array1.Sum() == array2.Sum()) return 0;
+            else return 1;
 
-            Assert.AreEqual(arrays.Equals(testArray, StructuralComparisons.StructuralEqualityComparer), true);
         }
+    }
 
-        [Test]
-        public void SortRowMinElement_ThrowsArgumentNullException()
+    public class ArraySortRowSumDesc : Icomparer
+    {
+        public int Compare(int[] array1, int[] array2)
         {
-            Assert.Throws<ArgumentNullException>(() => SortRowMinElement(null));
+            if (array1 == null)
+                throw new ArgumentNullException(nameof(array1));
+            if (array2 == null)
+                throw new ArgumentNullException(nameof(array2));
+
+            if (array1.Sum() < array2.Sum()) return -1;
+            else if (array1.Sum() == array2.Sum()) return 0;
+            else return 1;
         }
+    }
 
-        [Test]
-        public void SortRowMinElementDesc_PositiveTest()
+    public class ArraySortRowMaxElement : Icomparer
+    {
+        public int Compare(int[] array1, int[] array2)
         {
-            int[][] array = { new[] { 4, 2, -1, 9, -8, 10 }, new[] { 0 }, new[] { 4, 3, 8, 5, 7 } };
-            int[][] testArray = { new[] { 4, 3, 8, 5, 7 }, new[] { 0 }, new[] { 4, 2, -1, 9, -8, 10 }};
-            SortRowMinElementDesc(array);
+            if (array1 == null)
+                throw new ArgumentNullException(nameof(array1));
+            if (array2 == null)
+                throw new ArgumentNullException(nameof(array2));
 
-            IStructuralEquatable arrays = array;
-
-            Assert.AreEqual(arrays.Equals(testArray, StructuralComparisons.StructuralEqualityComparer), true);
+            if (array1.Max() > array2.Max()) return -1;
+            else if (array1.Max() == array2.Max()) return 0;
+            else return 1;
         }
+    }
 
-        [Test]
-        public void SortRowMinElementDesc_ThrowsArgumentNullException()
+    public class ArraySortRowMaxElementDesc : Icomparer
+    {
+        public int Compare(int[] array1, int[] array2)
         {
-            Assert.Throws<ArgumentNullException>(() => SortRowMinElementDesc(null));
+            if (array1 == null)
+                throw new ArgumentNullException(nameof(array1));
+            if (array2 == null)
+                throw new ArgumentNullException(nameof(array2));
+
+            if (array1.Max() < array2.Max()) return -1;
+            else if (array1.Max() == array2.Max()) return 0;
+            else return 1;
         }
     }
 }
