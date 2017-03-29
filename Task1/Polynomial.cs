@@ -9,7 +9,7 @@ namespace Task1
     public sealed class Polynomial
     {
         #region Private Fields
-        private static double Epsilon = 0.000001;
+        private static double epsilon = 0.000001;
 
         private readonly double[] coefficients;
 
@@ -52,7 +52,7 @@ namespace Task1
             this.Degree = coefficients.Length - 1;
             
 
-            while ((coefficients[this.Degree] == 0 || Math.Abs(coefficients[this.Degree]) < Epsilon) && this.Degree > 0)
+            while ((coefficients[this.Degree] == 0 || Math.Abs(coefficients[this.Degree]) < epsilon) && this.Degree > 0)
             {
                 this.Degree--;
             }
