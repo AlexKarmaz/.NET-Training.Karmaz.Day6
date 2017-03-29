@@ -99,17 +99,16 @@ namespace Task1.Tests
         }
 
         [TestCase(new double[] { 1, -2, 3 }, new double[] { 0, 0, 0 }, ExpectedResult = false)]
-        [TestCase(new double[] { 0, 0, 0 }, new double[] { 0, 0, 0 }, ExpectedResult = false)]
-        [TestCase(new double[] { 0, 0, 0 }, new double[] { 0, 0 }, ExpectedResult = false)]
+        [TestCase(new double[] { 0, 0, 0 }, new double[] { 0, 0, 0 }, ExpectedResult = true)]
         public bool OperatorEqual_PositiveTest(double[] coefficients1, double[] coefficients2)
         {
             return new Polynomial(coefficients1) == new Polynomial(coefficients2);
         }
 
-        [TestCase(new double[] { 1, -2, 3 }, new double[] { 0, 0, 0 }, 1, ExpectedResult = true)]
-        [TestCase(new double[] { 0, 0 }, new double[] { 2, 5, 1, -2, 3 }, 2, ExpectedResult = true)]
-        [TestCase(new double[] { 1, -2, 3 }, new double[] { 1, -2, 3 }, 3, ExpectedResult = true)]
-        public bool OperatorNotEqual_PositiveTest(double[] coefficients1, double[] coefficients2, int number)
+        [TestCase(new double[] { 1, -2, 3 }, new double[] { 0, 0, 0 }, ExpectedResult = true)]
+        [TestCase(new double[] { 0, 0 }, new double[] { 2, 5, 1, -2, 3 }, ExpectedResult = true)]
+        [TestCase(new double[] { 1, -2, 3 }, new double[] { 1, -2, 3 }, ExpectedResult = false)]
+        public bool OperatorNotEqual_PositiveTest(double[] coefficients1, double[] coefficients2)
         {
             return new Polynomial(coefficients1) != new Polynomial(coefficients2);
         }
