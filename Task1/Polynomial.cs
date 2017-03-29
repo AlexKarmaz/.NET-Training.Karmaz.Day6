@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,8 +9,8 @@ namespace Task1
 {
     public sealed class Polynomial
     {
-        #region Private Fields
-        private static double epsilon = 0.000001;
+        #region Private members
+         private static double epsilon;
 
         private readonly double[] coefficients;
 
@@ -61,6 +62,10 @@ namespace Task1
             Array.Copy(coefficients, this.coefficients, this.Degree + 1);
         }
 
+        static Polynomial()
+        {
+            epsilon = double.Parse(System.Configuration.ConfigurationManager.AppSettings["epsilon"], CultureInfo.InvariantCulture);
+        }
         /// <summary>
         /// Creates new Polynomial object based on another polynomial
         /// </summary>
