@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArraySort.cs" />
+    <Compile Include="DelegateToInterfaceArraySort.cs" />
+    <Compile Include="InterfaceToDelegateArraySort.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

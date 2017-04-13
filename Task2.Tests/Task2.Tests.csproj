@@ -45,6 +45,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArraySortTests.cs" />
+    <Compile Include="DelegateToInterfaceArraySortTests.cs" />
+    <Compile Include="InterfaceToDelegateArraySortTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
